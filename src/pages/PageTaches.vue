@@ -1,10 +1,12 @@
 <template>
-<h1>tache</h1>
+  <q-page padding>
+    <h1>Tâches</h1>
+  </q-page>
 </template>
 
 <script>
 export default {
-  name: 'PageTaches.vue'
+  name: 'PageTaches'
 }
 </script>
 

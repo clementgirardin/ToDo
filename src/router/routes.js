@@ -1,11 +1,10 @@
-
 const routes = [
   {
     path: '/',
     component: () => import('layouts/Layout.vue'),
     children: [
       { path: '', component: () => import('pages/PageTaches.vue') },
-      { path: '/params', component: () => import('pages/PageParams.vue') }
+      { path: 'params', component: () => import('pages/PageParams.vue') }
     ]
   },
 

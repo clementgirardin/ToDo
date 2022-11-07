@@ -1,10 +1,12 @@
 <template>
-<h1>params</h1>
+  <q-page padding>
+    <h1>Paramètres</h1>
+  </q-page>
 </template>
 
 <script>
 export default {
-  name: 'PageParams.vue'
+  name: 'PageParams'
 }
 </script>
 
