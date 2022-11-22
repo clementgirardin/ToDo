@@ -44,6 +44,10 @@ const mutations = {
     // Filtre les données du tableau
     // et garde les tâches dont l'id est différent de celui à supprimer
     state.taches = state.taches.filter(el => el.id !== id)
+  },
+  ajouterTache (state, tache) {
+    // Ajout de la tâche à fin du tableau
+    state.taches.push(tache)
   }
 }
 /*
@@ -58,6 +62,18 @@ const actions = {
   supprimerTache ({ commit }, id) {
     console.log('action supprimerTache')
     commit('supprimerTache', id)
+  },
+  ajouterTache ({ commit }, tache) {
+    let uId = 1
+    // Si le tableau contient des éléments
+    if (state.taches.length) {
+      // Récupère l'id MAX et lui ajoute 1
+      uId = Math.max(...state.taches.map(tache => tache.id)) + 1
+    }
+    // Ajoute le nouvel id à la tache
+    tache.id = uId
+    // Commite l'ajout
+    commit('ajouterTache', tache)
   }
 }
 

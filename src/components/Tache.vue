@@ -25,7 +25,10 @@
       >{{ tache.nom }}</q-item-label>
     </q-item-section>
 
-    <q-item-section side>
+    <q-item-section
+      v-if="tache.dateFin"
+      side
+    >
       <!-- Création d'une ligne Flex -->
       <div class="row">
         <!-- Création d'une colonne Flex -->
@@ -56,6 +59,16 @@
 
     <q-item-section side>
       <q-btn
+        @click.stop="afficherFormTache = true"
+        dense
+        flat
+        round
+        color="primary"
+        icon="edit" />
+    </q-item-section>
+
+    <q-item-section side>
+      <q-btn
         @click.stop="confirmerSuppression(tache.id)"
         dense
         flat
@@ -63,6 +76,19 @@
         color="negative"
         icon="delete" />
     </q-item-section>
+
+    <q-dialog
+      v-model="afficherFormTache"
+      persistent
+    >
+      <form-tache
+        @fermer="afficherFormTache = false"
+        :tacheAModifier="tache"
+        bouton="Modifier"
+      >
+        Modifier une tâche
+      </form-tache>
+    </q-dialog>
   </q-item>
 </template>
 
@@ -76,6 +102,11 @@ export default {
     tache: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      afficherFormTache: false
     }
   },
   methods: {
@@ -93,6 +124,9 @@ export default {
         this.supprimerTache(id)
       })
     }
+  },
+  components: {
+    'form-tache': require('components/Taches/Dialog/FormTache').default
   }
 }
 </script>
