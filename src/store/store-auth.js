@@ -1,6 +1,6 @@
 import { api } from 'boot/axios'
 import { afficherMessageErreur } from 'src/fonction/message-erreur'
-import { Loading } from 'quasar'
+import { Loading, LocalStorage } from 'quasar'
 // State : données du magasin
 const state = {
   user: null,
@@ -12,9 +12,19 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
-  setUser (state, user) {
-    state.user = user
+  setUser ({ commit, dispatch, state }, data) {
+    // Sauvegarde, commite, les données dans le magasin
+    commit('setUser', data.user)
+    commit('setToken', data.token)
+    // Sauvegarde les données de l'utilisateur dans le localStorage
+    LocalStorage.set('user', state.user)
+    LocalStorage.set('token', state.token)
+    // Redirige l'utilisateur vers la page des tâches
+    this.$router.push('/')
+    // Cache la fenêtre de chargement
+    Loading.hide()
   },
+
   setToken (state, token) {
     state.token = token
   }
