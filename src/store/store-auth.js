@@ -24,30 +24,30 @@ Actions : méthodes du magasin qui font appel aux mutations
 Elles peuvent être asynchrones !
  */
 const actions = {
-  enregistrerUtilisateur ({ commit }, payload) {
+  enregistrerUtilisateur ({ commit, dispatch }, payload) {
     api.post('/register', payload)
-      // Afficher le résultat en cas de réussite
       .then(function (response) {
-        commit('setUser', response.data.user)
-        commit('setToken', response.data.token)
-        this.$router.push('/')
+        dispatch('setUser', response.data)
       })
-      // En cas d'échec
       .catch(function (error) {
         console.log(error.response)
       })
   },
-
-  connecterUtilisateur ({ commit }, payload) {
+  connecterUtilisateur ({ commit, dispatch }, payload) {
     api.post('/login', payload)
       .then(function (response) {
-        commit('setUser', response.data.user)
-        commit('setToken', response.data.token)
-        this.$router.push('/')
+        dispatch('setUser', response.data)
       })
       .catch(function (error) {
-        console.log(error.response)
+        console.log(error)
       })
+  },
+  setUser ({ commit, dispatch }, data) {
+    // Sauvegarde les données de l'utilisater et le token dans le magasin
+    commit('setUser', data.user)
+    commit('setToken', data.token)
+    // Redirige l'utilisateur vers la page des tâches
+    this.$router.push('/')
   }
 }
 
