@@ -16,7 +16,9 @@ Actions : méthodes du magasin qui font appel aux mutations
 Elles peuvent être asynchrones !
  */
 const actions = {
-
+  enregistrerUtilisateur ({ commit }, payload) {
+    console.log(payload)
+  }
 }
 
 /*

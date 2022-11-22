@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'EnregistrementForm',
   data () {
@@ -58,8 +59,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['enregistrerUtilisateur']),
     submitForm () {
-      alert('Formulaire envoyé !')
+      this.enregistrerUtilisateur(this.form)
     },
     validateEmail (email) {
       // Source : https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
