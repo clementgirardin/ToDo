@@ -37,6 +37,10 @@ export default {
     return {
       tab: 'connexion'
     }
+  },
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    ConnexionForm: require('components/Connexion/ConnexionForm').default
   }
 }
 </script>
@@ -48,4 +52,3 @@ export default {
   margin: 0 auto;
 }
 </style>
-----------
