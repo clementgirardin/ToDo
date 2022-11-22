@@ -5,7 +5,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/PageTaches.vue') },
       { path: 'params', component: () => import('pages/PageParams.vue') },
-      { path: 'connexion', component: () => import('components/PageConnexion.vue') }
+      { path: 'connexion', component: () => import('pages/PageConnexion.vue') }
     ]
   },
 
