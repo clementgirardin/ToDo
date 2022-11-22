@@ -1,4 +1,5 @@
 import { api } from 'boot/axios'
+import { afficherMessageErreur } from 'src/fonction/message-erreur'
 
 // State : données du magasin
 const state = {
@@ -30,7 +31,11 @@ const actions = {
         dispatch('setUser', response.data)
       })
       .catch(function (error) {
-        console.log(error.response)
+        afficherMessageErreur(
+          'Création du compte impossible !',
+          Object.values(error.response.data)
+        )
+        throw error
       })
   },
   connecterUtilisateur ({ commit, dispatch }, payload) {
@@ -39,14 +44,16 @@ const actions = {
         dispatch('setUser', response.data)
       })
       .catch(function (error) {
-        console.log(error)
+        afficherMessageErreur(
+          'Connexion impossible !',
+          Object.values(error.response.data)
+        )
+        throw error
       })
   },
   setUser ({ commit, dispatch }, data) {
-    // Sauvegarde les données de l'utilisater et le token dans le magasin
     commit('setUser', data.user)
     commit('setToken', data.token)
-    // Redirige l'utilisateur vers la page des tâches
     this.$router.push('/')
   }
 }
