@@ -28,7 +28,10 @@
 </template>
 
 <script>
+import mapActions from 'vuex/dist/vuex.mjs'
+
 export default {
+
   name: 'ConnexionForm',
   data () {
     return {
@@ -39,8 +42,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions('auth', ['connecterUtilisateur']),
     submitForm () {
-      alert('Formulaire envoyé !')
+      this.connecterUtilisateur(this.form)
     },
     validateEmail (email) {
       // Source : https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript

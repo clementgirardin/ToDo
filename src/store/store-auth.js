@@ -30,9 +30,21 @@ const actions = {
       .then(function (response) {
         commit('setUser', response.data.user)
         commit('setToken', response.data.token)
-        console.log('CREATION OK', response)
+        this.$router.push('/')
       })
       // En cas d'échec
+      .catch(function (error) {
+        console.log(error.response)
+      })
+  },
+
+  connecterUtilisateur ({ commit }, payload) {
+    api.post('/login', payload)
+      .then(function (response) {
+        commit('setUser', response.data.user)
+        commit('setToken', response.data.token)
+        this.$router.push('/')
+      })
       .catch(function (error) {
         console.log(error.response)
       })
