@@ -40,7 +40,9 @@ export default {
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    ConnexionForm: require('components/Connexion/ConnexionForm').default
+    ConnexionForm: require('components/Connexion/ConnexionForm').default,
+    // eslint-disable-next-line vue/no-unused-components
+    EnregistrementForm: require('components/Connexion/ConnexionForm').default
   }
 }
 </script>
