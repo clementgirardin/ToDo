@@ -1,6 +1,6 @@
 import { api } from 'boot/axios'
 import { afficherMessageErreur } from 'src/fonction/message-erreur'
-
+import { Loading } from 'quasar'
 // State : données du magasin
 const state = {
   user: null,
@@ -26,11 +26,13 @@ Elles peuvent être asynchrones !
  */
 const actions = {
   enregistrerUtilisateur ({ commit, dispatch }, payload) {
+    Loading.show()
     api.post('/register', payload)
       .then(function (response) {
         dispatch('setUser', response.data)
       })
       .catch(function (error) {
+        Loading.hide()
         afficherMessageErreur(
           'Création du compte impossible !',
           Object.values(error.response.data)
@@ -39,11 +41,13 @@ const actions = {
       })
   },
   connecterUtilisateur ({ commit, dispatch }, payload) {
+    Loading.show()
     api.post('/login', payload)
       .then(function (response) {
         dispatch('setUser', response.data)
       })
       .catch(function (error) {
+        Loading.hide()
         afficherMessageErreur(
           'Connexion impossible !',
           Object.values(error.response.data)
@@ -55,6 +59,7 @@ const actions = {
     commit('setUser', data.user)
     commit('setToken', data.token)
     this.$router.push('/')
+    Loading.hide()
   }
 }
 
