@@ -97,6 +97,7 @@
 import { mapActions } from 'vuex'
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Tache',
   props: {
     tache: {
@@ -116,7 +117,7 @@ export default {
     confirmerSuppression (id) {
       this.$q.dialog({
         title: 'Supprimer tâche',
-        message: 'Voulez-vous vraiement supprimer cette tâche ?',
+        message: 'Voulez-vous vraiment supprimer cette tâche ?',
         cancel: 'Annuler',
         ok: 'Supprimer',
         persistent: true
@@ -126,7 +127,7 @@ export default {
     }
   },
   components: {
-    'form-tache': require('components/Taches/Dialog/FormTache').default
+    'form-tache': require('components/Dialog/FormTache').default
   }
 }
 </script>

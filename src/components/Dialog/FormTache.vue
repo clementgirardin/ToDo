@@ -116,7 +116,7 @@ export default {
   },
   methods: {
     // Mappage des actions ('nomNamespace', ['nomGetter'])
-    ...mapActions('taches', ['ajouterTache', 'modifierTache']),
+    ...mapActions('tache', ['ajouterTache', 'modifierTache']),
     formSubmit () {
       // Si la tache a un id, c'est une modification sinon ajout
       if (this.tache.id) {
