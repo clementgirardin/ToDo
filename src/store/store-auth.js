@@ -2,7 +2,8 @@ import { api } from 'boot/axios'
 
 // State : données du magasin
 const state = {
-
+  user: null,
+  token: null
 }
 
 /*
@@ -10,7 +11,12 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
-
+  setUser (state, user) {
+    state.user = user
+  },
+  setToken (state, token) {
+    state.token = token
+  }
 }
 
 /*
@@ -22,6 +28,8 @@ const actions = {
     api.post('/register', payload)
       // Afficher le résultat en cas de réussite
       .then(function (response) {
+        commit('setUser', response.data.user)
+        commit('setToken', response.data.token)
         console.log('CREATION OK', response)
       })
       // En cas d'échec
