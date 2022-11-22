@@ -1,3 +1,5 @@
+import { api } from 'boot/axios'
+
 // State : données du magasin
 const state = {
 
@@ -17,7 +19,15 @@ Elles peuvent être asynchrones !
  */
 const actions = {
   enregistrerUtilisateur ({ commit }, payload) {
-    console.log(payload)
+    api.post('/register', payload)
+      // Afficher le résultat en cas de réussite
+      .then(function (response) {
+        console.log('CREATION OK', response)
+      })
+      // En cas d'échec
+      .catch(function (error) {
+        console.log(error.response)
+      })
   }
 }
 
