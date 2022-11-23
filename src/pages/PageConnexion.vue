@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-card className="connexion">
+    <q-card class="connexion">
       <q-tabs
         v-model="tab"
         className="text-grey"
@@ -31,18 +31,16 @@
 </template>
 
 <script>
+import ConnexionForm from 'components/Connexion/ConnexionForm'
+import EnregistrementForm from 'components/Connexion/EnregistrementForm'
+
 export default {
   name: 'PageConnexion',
+  components: { ConnexionForm, EnregistrementForm },
   data () {
     return {
       tab: 'connexion'
     }
-  },
-  components: {
-    // eslint-disable-next-line vue/no-unused-components
-    ConnexionForm: require('components/Connexion/ConnexionForm').default,
-    // eslint-disable-next-line vue/no-unused-components
-    EnregistrementForm: require('components/Connexion/EnregistrementForm.vue').default
   }
 }
 </script>

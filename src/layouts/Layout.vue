@@ -6,17 +6,27 @@
           ToDo
         </q-toolbar-title>
         <q-btn
+          v-if="!user"
           to="/connexion"
           flat
           icon-right="account_circle"
           label="Se connecter"
           class="absolute-right"
         />
+
+        <q-btn
+          v-else
+          @click="deconnecterUtilisateur"
+          flat
+          icon-right="account_circle"
+          label="Se déconnecter"
+          class="absolute-right"
+        />
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      breakpoint="767"
+      :breakpoint="767"
       v-model="leftDrawerOpen"
       show-if-above
       bordered

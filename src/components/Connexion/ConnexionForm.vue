@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import mapActions from 'vuex/dist/vuex.mjs'
+
+import { mapActions } from 'vuex'
 
 export default {
-
   name: 'ConnexionForm',
   data () {
     return {
