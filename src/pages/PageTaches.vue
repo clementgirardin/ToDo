@@ -36,7 +36,7 @@
 
 <script>
 // importation des fonctions utilitaires
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'PageTaches',
@@ -47,7 +47,8 @@ export default {
   },
   computed: {
     // Mappage des getters ('nomNamespace', ['nomGetter'])
-    ...mapGetters('taches', ['taches'])
+    ...mapGetters('taches', ['taches']),
+    ...mapState('taches', ['tachesChargees'])
   },
   components: {
     tache: require('components/Tache').default,
