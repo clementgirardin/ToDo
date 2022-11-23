@@ -1,4 +1,7 @@
 // State : données du magasin
+import { api } from 'boot/axios'
+import { afficherMessageErreur } from 'src/fonction/message-erreur'
+
 const state = {
   taches: [
     {
@@ -48,6 +51,9 @@ const mutations = {
   ajouterTache (state, tache) {
     // Ajout de la tâche à fin du tableau
     state.taches.push(tache)
+  },
+  setTaches (state, taches) {
+    state.taches = taches
   }
 }
 /*
@@ -74,6 +80,24 @@ const actions = {
     tache.id = uId
     // Commite l'ajout
     commit('ajouterTache', tache)
+  },
+  getTachesApi ({ commit, rootState }) {
+    const config = {
+      headers: { Authorization: 'Bearer ' + rootState.auth.token }
+    }
+    api.get('/taches', config)
+      .then(function (response) {
+        commit('setTaches', response.data)
+      })
+      .catch(function (error) {
+        afficherMessageErreur(
+          'Erreur lors de la récupération des tâches !'
+        )
+        throw error
+      })
+  },
+  viderTaches ({ commit }) {
+    commit('setTaches', [])
   }
 }
 
