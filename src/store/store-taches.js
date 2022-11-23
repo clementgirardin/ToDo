@@ -34,6 +34,11 @@ Mutations : méthode qui manipulent les données
 Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
+
+  setTachesChargees (state, valeur) {
+    state.tachesChargees = valeur
+  },
+
   modifierTache (state, payload) {
     // Recherche la tâche et retourne sa position dans le tableau, son index
     const index = state.taches.findIndex(el => el.id === payload.id)
