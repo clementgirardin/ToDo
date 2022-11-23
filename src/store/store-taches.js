@@ -94,8 +94,13 @@ const actions = {
     }
     api.get('/taches', config)
       .then(function (response) {
-        commit('setTaches', response.data)
-        commit('setTachesChargees', true)
+        // AJOUT TIMER **************************************
+        setTimeout(() => {
+          commit('setTaches', response.data)
+          commit('setTachesChargees', true)
+        }
+        , 3000)
+        // FIN TIMER ****************************************
       })
       .catch(function (error) {
         afficherMessageErreur(
