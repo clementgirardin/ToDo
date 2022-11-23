@@ -68,9 +68,17 @@ const actions = {
   },
   setUser ({ commit, dispatch }, data) {
     const that = this
+    // Sauvegarde, commite, les données dans le magasin
     commit('setUser', data.user)
-    commit('setToken', data.token)
+    commit('setToken', data.access_token)
+    // Sauvegarde les données de l'utilisateur dans le localStorage
+    LocalStorage.set('user', state.user)
+    LocalStorage.set('token', state.token)
+    // Récupération des tâches de l'utilisateur
+    dispatch('taches/getTachesApi', null, { root: true })
+    // Redirige l'utilisateur vers la page des tâches
     that.$router.push('/')
+    // Cache la fenêtre de chargement
     Loading.hide()
   },
   deconnecterUtilisateur ({ commit, state }) {
