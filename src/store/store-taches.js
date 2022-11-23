@@ -88,12 +88,14 @@ const actions = {
     commit('ajouterTache', tache)
   },
   getTachesApi ({ commit, rootState }) {
+    commit('setTachesChargees', false)
     const config = {
       headers: { Authorization: 'Bearer ' + rootState.auth.token }
     }
     api.get('/taches', config)
       .then(function (response) {
         commit('setTaches', response.data)
+        commit('setTachesChargees', true)
       })
       .catch(function (error) {
         afficherMessageErreur(
