@@ -109,7 +109,7 @@ export default {
         nom: '',
         dateFin: '',
         heureFin: '',
-        terminee: false
+        terminee: 0
       },
       heureTemp: ''
     }

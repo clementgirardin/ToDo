@@ -25,7 +25,8 @@ const state = {
       dateFin: '16.06.2020',
       heureFin: '14:00'
     }
-  ]
+  ],
+  tachesChargees: false
 }
 
 /*

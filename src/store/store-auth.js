@@ -81,7 +81,7 @@ const actions = {
     // Cache la fenêtre de chargement
     Loading.hide()
   },
-  deconnecterUtilisateur ({ commit, state }) {
+  deconnecterUtilisateur ({ commit, state, dispatch }) {
     Loading.show()
     const that = this
     // Configuration du header avec token
@@ -102,6 +102,8 @@ const actions = {
         commit('setToken', null)
         // Vide le locaStorage
         LocalStorage.clear()
+        // Vide la liste des tâches
+        dispatch('taches/viderTaches', null, { root: true })
         // Redirige l'utilisateur vers la page de connexion
         that.$router.push('/connexion')
         // location.reload() // recharge la page du navigateur
