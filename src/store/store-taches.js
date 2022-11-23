@@ -106,6 +106,7 @@ const actions = {
   },
   viderTaches ({ commit }) {
     commit('setTaches', [])
+    commit('setTachesChargees', false)
   }
 }
 
