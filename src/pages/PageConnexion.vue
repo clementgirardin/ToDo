@@ -18,12 +18,12 @@
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="connexion">
           <div className="text-h6">Se connecter</div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <ConnexionForm/>
         </q-tab-panel>
 
         <q-tab-panel name="enregistrement">
           <div className="text-h6">Créer un compte</div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <EnregistrementForm/>
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -42,7 +42,7 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     ConnexionForm: require('components/Connexion/ConnexionForm').default,
     // eslint-disable-next-line vue/no-unused-components
-    EnregistrementForm: require('components/Connexion/ConnexionForm').default
+    EnregistrementForm: require('components/Connexion/EnregistrementForm.vue').default
   }
 }
 </script>
