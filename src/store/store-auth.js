@@ -13,6 +13,7 @@ Les mutations ne peuvent pas être asynchrones !!!
  */
 const mutations = {
   setUser ({ commit, dispatch, state }, data) {
+    const that = this
     // Sauvegarde, commite, les données dans le magasin
     commit('setUser', data.user)
     commit('setToken', data.token)
@@ -20,7 +21,7 @@ const mutations = {
     LocalStorage.set('user', state.user)
     LocalStorage.set('token', state.token)
     // Redirige l'utilisateur vers la page des tâches
-    this.$router.push('/')
+    that.$router.push('/')
     // Cache la fenêtre de chargement
     Loading.hide()
   },
@@ -66,10 +67,38 @@ const actions = {
       })
   },
   setUser ({ commit, dispatch }, data) {
+    const that = this
     commit('setUser', data.user)
     commit('setToken', data.token)
-    this.$router.push('/')
+    that.$router.push('/')
     Loading.hide()
+  },
+  deconnecterUtilisateur ({ commit, state }) {
+    Loading.show()
+    const that = this
+    // Configuration du header avec token
+    const config = {
+      headers: { Authorization: 'Bearer ' + state.token }
+    }
+    // Déconnexion de l'API
+    api.post('/logout', {}, config)
+      .catch(function (error) {
+        afficherMessageErreur(
+          'Erreur lors de la déconnexion'
+        )
+        throw error
+      })
+      .finally(function () {
+        // Réinitialise user et token
+        commit('setUser', null)
+        commit('setToken', null)
+        // Vide le locaStorage
+        LocalStorage.clear()
+        // Redirige l'utilisateur vers la page de connexion
+        that.$router.push('/connexion')
+        // location.reload() // recharge la page du navigateur
+        Loading.hide()
+      })
   }
 }
 

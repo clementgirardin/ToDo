@@ -67,7 +67,7 @@
 </template>
 
 <script>
-
+import { mapState, mapActions } from 'vuex'
 export default {
   name: 'MainLayout',
   data () {
@@ -88,6 +88,12 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState('auth', ['user'])
+  },
+  methods: {
+    ...mapActions('auth', ['deconnecterUtilisateur'])
   }
 }
 </script>
