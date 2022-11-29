@@ -55,10 +55,12 @@ const actions = {
     Loading.show()
     api.post('/login', payload)
       .then(function (response) {
+        console.log(response)
         dispatch('setUser', response.data)
       })
       .catch(function (error) {
         Loading.hide()
+        console.log(error)
         afficherMessageErreur(
           'Connexion impossible !',
           Object.values(error.response.data)
